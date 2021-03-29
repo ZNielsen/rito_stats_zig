@@ -1,4 +1,5 @@
 const Builder = @import("std").build.Builder;
+const packages = @import("lib/packages.zig");
 
 pub fn build(b: *Builder) void {
     // Standard target options allows the person running `zig build` to choose
@@ -12,6 +13,7 @@ pub fn build(b: *Builder) void {
     const mode = b.standardReleaseOptions();
 
     const exe = b.addExecutable("rito_stats", "src/main.zig");
+    exe.addPackage(packages.requestz);
     exe.setTarget(target);
     exe.setBuildMode(mode);
     exe.install();

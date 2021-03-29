@@ -1,6 +1,7 @@
 const std = @import("std");
 const fs = std.fs;
 const json = std.json;
+const Client = @import("requestz").Client;
 
 // {"id":"B1K11tBYT6OVo88bHODxC55XiWZEBvKcsi0koJe5SsGyh4c","accountId":"JZO25Xuf5Y0QHfEmXvsDGIc_Or4zB_wowN9ZhB3-nw1ljQ","puuid":"oq8loqZb6CYoxISQ6PK3FUyZuxnMqYwVw4VC1exqlbRTku0sjJTyNF1NH2AafbmyWXYi5Y7N4KEpVw","name":"Suq Mediq","profileIconId":1639,"revisionDate":1616733734000,"summonerLevel":71}
 
@@ -19,6 +20,12 @@ fn GetApiKey() ![]u8 {
     return buf[0 .. bytes - 1];
 }
 
-pub fn main() anyerror!void {
+pub fn main() !void {
     const api_key = GetApiKey();
+
+    var client = try Client.init(std.testing.allocator);
+    defer client.deinit();
+
+    var response = try client.get("http://httpbin.org/get", .{});
+    defer response.deinit();
 }
