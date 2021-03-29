@@ -37,10 +37,12 @@ pub fn main() !void {
     var response = try client.get("http://httpbin.org/get", .{});
     defer response.deinit();
 
-    var json = response.json();
+    var json = try response.json();
 
     // Work with the json
     std.log.info("json: {}", .{json});
+    // json.Value is a hash map
+    var map = json.root;
 
     std.log.info("end of main()", .{});
 }
