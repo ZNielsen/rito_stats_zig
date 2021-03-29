@@ -30,6 +30,6 @@ var requestz_dependencies = [_]std.build.Pkg{
 
 pub const requestz = std.build.Pkg{
     .name = "requestz",
-    .path = "lib/requestz/main.zig",
+    .path = "lib/requestz/src/main.zig",
     .dependencies = &requestz_dependencies,
 };
