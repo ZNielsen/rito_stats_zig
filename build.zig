@@ -13,6 +13,9 @@ pub fn build(b: *Builder) void {
     const mode = b.standardReleaseOptions();
 
     const exe = b.addExecutable("rito_stats", "src/main.zig");
+    exe.addPackage(packages.network);
+    exe.addPackage(packages.http);
+    exe.addPackage(packages.h11);
     exe.addPackage(packages.requestz);
     exe.setTarget(target);
     exe.setBuildMode(mode);
