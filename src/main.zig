@@ -42,7 +42,10 @@ pub fn main() !void {
     // Work with the json
     std.log.info("json: {}", .{json});
     // json.Value is a hash map
-    var map = json.root;
+    var map = json.root.Object;
+
+        std.log.info("key: {}, val: {}", .{ key, val });
+    }
 
     std.log.info("end of main()", .{});
 }
